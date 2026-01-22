@@ -1,19 +1,13 @@
 // Calculate dashboard statistics
 export const calculateStats = (merchants) => {
+  const totalMerchants = merchants.length;
   const activeMerchants = merchants.filter((m) => m.status === "active").length;
-  const highRisk = merchants.filter((m) => m.risk === "high").length;
   const totalVolume = merchants.reduce((sum, m) => sum + m.volume, 0);
-
-  // Calculate avg success rate (100 - avg chargeback)
-  const avgChargeback =
-    merchants.length > 0
-      ? merchants.reduce((sum, m) => sum + m.chargeback, 0) / merchants.length
-      : 0;
-  const avgSuccessRate = (100 - avgChargeback).toFixed(1) + "%";
+  const highRisk = merchants.filter((m) => m.risk === "high").length;
 
   return {
-    totalVolume: `$${(totalVolume / 1000000).toFixed(1)}M`,
-    avgSuccessRate,
+    totalVolume: `$${(totalVolume / 1000000).toFixed(2)}M`,
+    totalMerchants,
     activeMerchants,
     highRisk,
   };
@@ -46,5 +40,3 @@ export const getRiskDistribution = (merchants) => {
     count: riskCounts[risk] || 0,
   }));
 };
-
-

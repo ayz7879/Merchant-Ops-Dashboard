@@ -12,7 +12,7 @@ const Layout = () => {
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       <main className="pt-16 lg:pl-72 min-h-screen">
-        <div className="bg-slate-900/50 backdrop-blur-xl  border border-slate-700/50 p-8 shadow-2xl shadow-black/20">
+        <div className="bg-slate-900/50 backdrop-blur-xl  border border-slate-700/50 p-4 shadow-2xl shadow-black/20">
           <Outlet />
         </div>
       </main>
